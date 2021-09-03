@@ -59,6 +59,19 @@ public:
     juce::AudioProcessorValueTreeState apvts { *this, nullptr, "Paramters", createParameterLayout() };
 
 private:
+    // Creates an IIR filter object that uses float values
+    using Filter = juce::dsp::IIR::Filter<float>;
+
+    // If a filter is configured as low-pass or high-pass, it will have a 12 db/octave slope
+    using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;
+
+    // Define a chain to represent the entire mono signal path
+    using MonoChain = juce::dsp::ProcessorChain<CutFilter, Filter, CutFilter>;
+
+    // In order to do stereo processing, two instances of the mono chain are needed
+    MonoChain leftChain, rightChain;
+
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessor)
 };
