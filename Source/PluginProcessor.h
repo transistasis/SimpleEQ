@@ -56,7 +56,7 @@ public:
     // This function is static since it doesn't use any member variables
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
-    juce::AudioProcessorValueTreeState apvts { *this, nullptr, "Paramters", createParameterLayout() };
+    juce::AudioProcessorValueTreeState apvts { *this, nullptr, "Parameters", createParameterLayout() };
 
 private:
     // Creates an IIR filter object that uses float values

@@ -173,8 +173,8 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     juce::dsp::ProcessContextReplacing<float> rightContext(rightBlock);
 
     // Pass the contexts to the mono filter chains
-    leftChain.process(leftChain);
-    rightChain.process(rightChain);
+    leftChain.process(leftContext);
+    rightChain.process(rightContext);
 }
 
 //==============================================================================
