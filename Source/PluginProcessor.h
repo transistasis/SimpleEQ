@@ -10,6 +10,16 @@
 
 #include <JuceHeader.h>
 
+// Create a data structure to make chain parameters organized
+struct ChainSettings
+{
+    float peakFreq{ 0 }, peakGainInDecibels{ 0 }, peakQuality{ 1.f };
+    float lowCutFreq{ 0 }, highCutFreq{ 0 };
+    int lowCutSlope{ 0 }, highCutSlope{ 0 };
+};
+
+ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
+
 //==============================================================================
 /**
 */
@@ -71,6 +81,13 @@ private:
     // In order to do stereo processing, two instances of the mono chain are needed
     MonoChain leftChain, rightChain;
 
+    // This enumerated type will allow you to see the position of each item in the processing chain
+    enum ChainPositions
+    {
+        LowCut,
+        Peak,
+        HighCut
+    };
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessor)
