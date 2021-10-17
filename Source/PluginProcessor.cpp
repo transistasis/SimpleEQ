@@ -171,7 +171,7 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
             break;
     }
 
-    auto& rightLowCut = leftChain.get<ChainPositions::LowCut>();
+    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
     rightLowCut.setBypassed<0>(true);
     rightLowCut.setBypassed<1>(true);
@@ -317,7 +317,7 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
             break;
     }
 
-    auto& rightLowCut = leftChain.get<ChainPositions::LowCut>();
+    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
 
     rightLowCut.setBypassed<0>(true);
     rightLowCut.setBypassed<1>(true);
